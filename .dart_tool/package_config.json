@@ -908,10 +908,10 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2024-11-21T02:02:48.902911Z",
+  "generated": "2024-11-27T04:29:56.104052Z",
   "generator": "pub",
-  "generatorVersion": "3.5.1",
+  "generatorVersion": "3.5.4",
   "flutterRoot": "file:///C:/flutter",
-  "flutterVersion": "3.24.1",
+  "flutterVersion": "3.24.5",
   "pubCache": "file:///C:/Users/walee/AppData/Local/Pub/Cache"
 }

@@ -1,0 +1,881 @@
+// **************************************************************************
+// IsarCollectionGenerator
+// **************************************************************************
+
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+
+extension GetShiftsModelCollection on Isar {
+  IsarCollection<ShiftsModel> get shiftsModels => this.collection();
+}
+
+const ShiftsModelSchema = CollectionSchema(
+  name: r'ShiftsModel',
+  id: 7685666414399568096,
+  properties: {
+    r'hashCode': PropertySchema(
+      id: 0,
+      name: r'hashCode',
+      type: IsarType.long,
+    ),
+    r'shiftId': PropertySchema(
+      id: 1,
+      name: r'shiftId',
+      type: IsarType.long,
+    ),
+    r'shiftName': PropertySchema(
+      id: 2,
+      name: r'shiftName',
+      type: IsarType.string,
+    ),
+    r'shiftType': PropertySchema(
+      id: 3,
+      name: r'shiftType',
+      type: IsarType.string,
+    )
+  },
+  estimateSize: _shiftsModelEstimateSize,
+  serialize: _shiftsModelSerialize,
+  deserialize: _shiftsModelDeserialize,
+  deserializeProp: _shiftsModelDeserializeProp,
+  idName: r'id',
+  indexes: {},
+  links: {},
+  embeddedSchemas: {},
+  getId: _shiftsModelGetId,
+  getLinks: _shiftsModelGetLinks,
+  attach: _shiftsModelAttach,
+  version: '3.1.0+1',
+);
+
+int _shiftsModelEstimateSize(
+  ShiftsModel object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  {
+    final value = object.shiftName;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.shiftType;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  return bytesCount;
+}
+
+void _shiftsModelSerialize(
+  ShiftsModel object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeLong(offsets[0], object.hashCode);
+  writer.writeLong(offsets[1], object.shiftId);
+  writer.writeString(offsets[2], object.shiftName);
+  writer.writeString(offsets[3], object.shiftType);
+}
+
+ShiftsModel _shiftsModelDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = ShiftsModel(
+    shiftId: reader.readLongOrNull(offsets[1]),
+    shiftName: reader.readStringOrNull(offsets[2]),
+    shiftType: reader.readStringOrNull(offsets[3]),
+  );
+  object.id = id;
+  return object;
+}
+
+P _shiftsModelDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (reader.readLong(offset)) as P;
+    case 1:
+      return (reader.readLongOrNull(offset)) as P;
+    case 2:
+      return (reader.readStringOrNull(offset)) as P;
+    case 3:
+      return (reader.readStringOrNull(offset)) as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
+  }
+}
+
+Id _shiftsModelGetId(ShiftsModel object) {
+  return object.id;
+}
+
+List<IsarLinkBase<dynamic>> _shiftsModelGetLinks(ShiftsModel object) {
+  return [];
+}
+
+void _shiftsModelAttach(
+    IsarCollection<dynamic> col, Id id, ShiftsModel object) {
+  object.id = id;
+}
+
+extension ShiftsModelQueryWhereSort
+    on QueryBuilder<ShiftsModel, ShiftsModel, QWhere> {
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterWhere> anyId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(const IdWhereClause.any());
+    });
+  }
+}
+
+extension ShiftsModelQueryWhere
+    on QueryBuilder<ShiftsModel, ShiftsModel, QWhereClause> {
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterWhereClause> idEqualTo(Id id) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IdWhereClause.between(
+        lower: id,
+        upper: id,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterWhereClause> idNotEqualTo(
+      Id id) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(
+              IdWhereClause.lessThan(upper: id, includeUpper: false),
+            )
+            .addWhereClause(
+              IdWhereClause.greaterThan(lower: id, includeLower: false),
+            );
+      } else {
+        return query
+            .addWhereClause(
+              IdWhereClause.greaterThan(lower: id, includeLower: false),
+            )
+            .addWhereClause(
+              IdWhereClause.lessThan(upper: id, includeUpper: false),
+            );
+      }
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterWhereClause> idGreaterThan(Id id,
+      {bool include = false}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(
+        IdWhereClause.greaterThan(lower: id, includeLower: include),
+      );
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterWhereClause> idLessThan(Id id,
+      {bool include = false}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(
+        IdWhereClause.lessThan(upper: id, includeUpper: include),
+      );
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterWhereClause> idBetween(
+    Id lowerId,
+    Id upperId, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IdWhereClause.between(
+        lower: lowerId,
+        includeLower: includeLower,
+        upper: upperId,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+}
+
+extension ShiftsModelQueryFilter
+    on QueryBuilder<ShiftsModel, ShiftsModel, QFilterCondition> {
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition> hashCodeEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'hashCode',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      hashCodeGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'hashCode',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      hashCodeLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'hashCode',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition> hashCodeBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'hashCode',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition> idEqualTo(
+      Id value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'id',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition> idGreaterThan(
+    Id value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'id',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition> idLessThan(
+    Id value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'id',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition> idBetween(
+    Id lower,
+    Id upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'id',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'shiftId',
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'shiftId',
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition> shiftIdEqualTo(
+      int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'shiftId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftIdGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'shiftId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition> shiftIdLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'shiftId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition> shiftIdBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'shiftId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftNameIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'shiftName',
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftNameIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'shiftName',
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftNameEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'shiftName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftNameGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'shiftName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftNameLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'shiftName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftNameBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'shiftName',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftNameStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'shiftName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftNameEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'shiftName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftNameContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'shiftName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftNameMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'shiftName',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftNameIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'shiftName',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftNameIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'shiftName',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftTypeIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'shiftType',
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftTypeIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'shiftType',
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftTypeEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'shiftType',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftTypeGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'shiftType',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftTypeLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'shiftType',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftTypeBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'shiftType',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftTypeStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'shiftType',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftTypeEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'shiftType',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftTypeContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'shiftType',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftTypeMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'shiftType',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftTypeIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'shiftType',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterFilterCondition>
+      shiftTypeIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'shiftType',
+        value: '',
+      ));
+    });
+  }
+}
+
+extension ShiftsModelQueryObject
+    on QueryBuilder<ShiftsModel, ShiftsModel, QFilterCondition> {}
+
+extension ShiftsModelQueryLinks
+    on QueryBuilder<ShiftsModel, ShiftsModel, QFilterCondition> {}
+
+extension ShiftsModelQuerySortBy
+    on QueryBuilder<ShiftsModel, ShiftsModel, QSortBy> {
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> sortByHashCode() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hashCode', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> sortByHashCodeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hashCode', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> sortByShiftId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'shiftId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> sortByShiftIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'shiftId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> sortByShiftName() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'shiftName', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> sortByShiftNameDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'shiftName', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> sortByShiftType() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'shiftType', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> sortByShiftTypeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'shiftType', Sort.desc);
+    });
+  }
+}
+
+extension ShiftsModelQuerySortThenBy
+    on QueryBuilder<ShiftsModel, ShiftsModel, QSortThenBy> {
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> thenByHashCode() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hashCode', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> thenByHashCodeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hashCode', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> thenById() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'id', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> thenByIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'id', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> thenByShiftId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'shiftId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> thenByShiftIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'shiftId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> thenByShiftName() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'shiftName', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> thenByShiftNameDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'shiftName', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> thenByShiftType() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'shiftType', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QAfterSortBy> thenByShiftTypeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'shiftType', Sort.desc);
+    });
+  }
+}
+
+extension ShiftsModelQueryWhereDistinct
+    on QueryBuilder<ShiftsModel, ShiftsModel, QDistinct> {
+  QueryBuilder<ShiftsModel, ShiftsModel, QDistinct> distinctByHashCode() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'hashCode');
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QDistinct> distinctByShiftId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'shiftId');
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QDistinct> distinctByShiftName(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'shiftName', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<ShiftsModel, ShiftsModel, QDistinct> distinctByShiftType(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'shiftType', caseSensitive: caseSensitive);
+    });
+  }
+}
+
+extension ShiftsModelQueryProperty
+    on QueryBuilder<ShiftsModel, ShiftsModel, QQueryProperty> {
+  QueryBuilder<ShiftsModel, int, QQueryOperations> idProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<ShiftsModel, int, QQueryOperations> hashCodeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'hashCode');
+    });
+  }
+
+  QueryBuilder<ShiftsModel, int?, QQueryOperations> shiftIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'shiftId');
+    });
+  }
+
+  QueryBuilder<ShiftsModel, String?, QQueryOperations> shiftNameProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'shiftName');
+    });
+  }
+
+  QueryBuilder<ShiftsModel, String?, QQueryOperations> shiftTypeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'shiftType');
+    });
+  }
+}
